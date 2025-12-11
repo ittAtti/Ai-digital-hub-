@@ -1,10 +1,13 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { GeneratedProductDraft, AgentType } from "../types";
 
-// The API key is injected automatically by the environment.
+// The API key is injected automatically by vite config from process.env.API_KEY
 const apiKey = process.env.API_KEY;
 
-const ai = new GoogleGenAI({ apiKey });
+let ai: GoogleGenAI | null = null;
+if (apiKey) {
+  ai = new GoogleGenAI({ apiKey });
+}
 
 const getAgentPrompt = (agentType: AgentType, topic: string) => {
   switch (agentType) {
@@ -71,8 +74,8 @@ export const generateProductConcept = async (
   agentType: AgentType,
   topic: string
 ): Promise<GeneratedProductDraft | null> => {
-  if (!apiKey) {
-    throw new Error("API Key is missing. Please ensure the API_KEY environment variable is set in your project settings.");
+  if (!apiKey || !ai) {
+    throw new Error("API Key is missing. Please add the API_KEY environment variable in your Netlify Site Settings.");
   }
 
   const modelId = "gemini-2.5-flash"; 

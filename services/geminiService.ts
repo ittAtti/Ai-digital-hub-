@@ -1,9 +1,10 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { GeneratedProductDraft, AgentType } from "../types";
 
-// Note: In a real deployment, keys should be proxied or handled server-side.
-// For this frontend-only demo, we assume the environment variable is available.
-const apiKey = process.env.API_KEY || ''; 
+// In a production environment, you should proxy these requests or use a build process (like Vite)
+// to inject environment variables (e.g., import.meta.env.VITE_API_KEY).
+// For this direct browser deployment, we use the key provided.
+const apiKey = 'AIzaSyCJEXcnadtlMPDjZ3Ni_o-TxcQTOaaXciE'; 
 
 const ai = new GoogleGenAI({ apiKey });
 
@@ -13,7 +14,7 @@ export const generateProductConcept = async (
 ): Promise<GeneratedProductDraft | null> => {
   if (!apiKey) {
     console.error("API Key missing");
-    throw new Error("API Key is missing. Please set REACT_APP_GEMINI_API_KEY.");
+    throw new Error("API Key is missing.");
   }
 
   const modelId = "gemini-2.5-flash"; // Efficient for structured generation

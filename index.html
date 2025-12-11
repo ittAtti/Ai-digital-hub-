@@ -7,7 +7,10 @@
     
     <!-- Polyfill for process/global -->
     <script>
-      window.process = { env: { NODE_ENV: 'production' } };
+      // specific polyfill for process.env.NODE_ENV
+      window.process = window.process || {};
+      window.process.env = window.process.env || {};
+      window.process.env.NODE_ENV = 'production';
       window.global = window;
       
       tailwind = {
@@ -65,7 +68,9 @@
     "recharts": "https://esm.sh/recharts@2.12.3?deps=react@18.2.0,react-dom@18.2.0",
     "lucide-react": "https://esm.sh/lucide-react@0.363.0?deps=react@18.2.0",
     "@google/genai": "https://esm.sh/@google/genai@0.1.2",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.1/"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.2/",
+    "vite": "https://esm.sh/vite@^7.2.7",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
 </script>

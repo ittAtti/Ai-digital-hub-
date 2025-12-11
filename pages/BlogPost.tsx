@@ -1,18 +1,30 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { BLOG_POSTS } from '../constants';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, FileQuestion } from 'lucide-react';
 
 const BlogPost: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const post = BLOG_POSTS.find(p => p.id === id);
 
   if (!post) {
-    return <div className="text-center py-20 text-white">Post not found.</div>;
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center">
+        <FileQuestion size={64} className="text-gray-600 mb-6" />
+        <h2 className="text-3xl font-bold text-white mb-4">Article Not Found</h2>
+        <p className="text-gray-400 mb-8 max-w-md">We couldn't find the blog post you're looking for.</p>
+        <Link 
+          to="/blog" 
+          className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-8 rounded-lg transition"
+        >
+          View All Articles
+        </Link>
+      </div>
+    );
   }
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12 min-h-screen">
+    <div className="max-w-4xl mx-auto px-6 py-12 min-h-screen animate-fadeIn">
       <Link to="/blog" className="flex items-center text-gray-400 hover:text-emerald-400 mb-8 transition">
         <ArrowLeft size={20} className="mr-2" /> Back to Blog
       </Link>

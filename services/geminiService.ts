@@ -2,32 +2,91 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { GeneratedProductDraft, AgentType } from "../types";
 
 // The API key is injected automatically by the environment.
-// Do NOT hardcode the key here.
 const apiKey = process.env.API_KEY;
 
 const ai = new GoogleGenAI({ apiKey });
+
+const getAgentPrompt = (agentType: AgentType, topic: string) => {
+  switch (agentType) {
+    case AgentType.EBOOK:
+      return `
+        You are an expert AI eBook Generator.
+        Create a comprehensive eBook concept about: "${topic}".
+        The product should be a high-value PDF guide.
+        
+        Focus on:
+        - Deep industry insights
+        - Actionable steps
+        - Professional formatting implied in description
+      `;
+    case AgentType.PROMPT:
+      return `
+        You are an expert Prompt Engineer.
+        Create a premium AI Prompt Pack about: "${topic}".
+        This pack is for tools like MidJourney, ChatGPT, or Stable Diffusion.
+        
+        Focus on:
+        - High-fidelity outputs
+        - Copy-paste readyness
+        - Variety of styles
+      `;
+    case AgentType.MARKETING:
+      return `
+        You are a Digital Marketing Specialist Agent.
+        Create a complete Marketing Kit concept for: "${topic}".
+        Includes social media templates, email sequences, and ad copy.
+        
+        Focus on:
+        - Conversion rates
+        - Viral potential
+        - Time-saving for businesses
+      `;
+    case AgentType.TEMPLATE:
+      return `
+        You are a Productivity Systems Architect.
+        Create a high-value digital template (Notion, Excel, or Planner) for: "${topic}".
+        
+        Focus on:
+        - Organization and efficiency
+        - Aesthetics
+        - Ease of use
+      `;
+    case AgentType.SEO:
+      return `
+        You are an SEO Strategy Agent.
+        Create an "SEO Content Bundle" product about: "${topic}".
+        This digital product includes pre-written articles, keyword lists, and meta tag templates.
+        
+        Focus on:
+        - Ranking potential
+        - Niche authority
+        - Traffic growth
+      `;
+    default:
+      return `Create a digital product concept about: "${topic}"`;
+  }
+};
 
 export const generateProductConcept = async (
   agentType: AgentType,
   topic: string
 ): Promise<GeneratedProductDraft | null> => {
   if (!apiKey) {
-    console.error("API Key missing");
-    throw new Error("API Key is missing. Please ensure it is set in the environment.");
+    throw new Error("API Key is missing. Please ensure the API_KEY environment variable is set in your project settings.");
   }
 
-  const modelId = "gemini-2.5-flash"; // Efficient for structured generation
+  const modelId = "gemini-2.5-flash"; 
+  const specificInstruction = getAgentPrompt(agentType, topic);
 
   const prompt = `
-    You are an expert digital product creator (Agent: ${agentType}).
-    Create a highly profitable digital product concept about: "${topic}".
+    ${specificInstruction}
     
     Return a JSON object with:
     1. A catchy 'title'.
     2. A persuasive 'description' (2-3 sentences).
-    3. A realistic 'price' (number).
+    3. A realistic 'price' (number between 9.99 and 99.99).
     4. A list of 3-5 key 'features'.
-    5. A 'category' (e.g., eBook, Template, etc.).
+    5. A 'category' (Must be one of: 'eBook', 'Prompt Pack', 'Marketing Kit', 'Template', 'Audio').
     6. A short 'marketingCopy' for social media.
   `;
 
@@ -56,11 +115,19 @@ export const generateProductConcept = async (
     });
 
     const text = response.text;
-    if (!text) return null;
-    return JSON.parse(text) as GeneratedProductDraft;
+    if (!text) {
+      throw new Error("The AI model returned an empty response. Please try a different topic or refine your keywords.");
+    }
+    
+    try {
+      return JSON.parse(text) as GeneratedProductDraft;
+    } catch (parseError) {
+      console.error("JSON Parse Error:", text);
+      throw new Error("Failed to process the AI response. The format was invalid. Please try again.");
+    }
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Gemini Generation Error:", error);
-    return null;
+    throw new Error(error.message || "An unexpected error occurred while communicating with the AI service. Please check your connection and try again.");
   }
 };

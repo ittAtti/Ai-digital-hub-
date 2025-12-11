@@ -104,5 +104,110 @@ export const BLOG_POSTS: BlogPost[] = [
       <h2 class="text-2xl font-bold text-emerald-400 mb-4">Conclusion</h2>
       <p class="mb-4">AI dramatically lowers the barrier to publishing. By following this workflow, you can produce eBooks that look professional and sell well — even without traditional writing experience.</p>
     `
+  },
+  {
+    id: 'scaling-with-prompt-packs',
+    title: 'Scaling Your Income with Prompt Packs',
+    excerpt: 'Prompt engineering is the new coding. Learn how to package your best prompts into a profitable digital product.',
+    date: 'Oct 20, 2025',
+    author: 'AI Art Expert',
+    imageUrl: 'https://picsum.photos/800/400?random=12',
+    content: `
+      <p class="mb-4">Prompt packs are among the highest margin digital products. You create them once, and they sell forever. Here is how to structure a high-converting prompt pack.</p>
+      <h3 class="text-xl font-bold text-emerald-300 mt-6 mb-2">Organize by Usecase</h3>
+      <p class="mb-4">Don't just dump 1000 prompts. Categorize them: "Portraits," "Landscapes," "Logos," "Web Design." Structure adds value.</p>
+      <h3 class="text-xl font-bold text-emerald-300 mt-6 mb-2">Includes Examples</h3>
+      <p class="mb-4">Always show the result of the prompt. Buyers want to know what they are getting.</p>
+    `
+  },
+  {
+    id: 'marketing-kits-for-agencies',
+    title: 'Why Agencies Buy Marketing Kits',
+    excerpt: 'Agencies are busy. Speed is their currency. Discover how to build marketing kits that save agencies dozens of hours.',
+    date: 'Oct 22, 2025',
+    author: 'Growth Specialist',
+    imageUrl: 'https://picsum.photos/800/400?random=13',
+    content: `
+      <p class="mb-4">Marketing kits are comprehensive bundles of assets. Think "Real Estate Social Media Kit" or "Dentist Email Sequence."</p>
+      <p class="mb-4">Agencies buy these to resell or use for their clients. If you can use AI to generate high-quality copy and templates, you have a B2B product ready to go.</p>
+    `
+  },
+  {
+    id: 'notion-templates-business',
+    title: 'Building a Business on Notion Templates',
+    excerpt: 'Notion is more than a note-taking app; it is an OS for companies. Here is how to design templates that sell for $50+.',
+    date: 'Oct 25, 2025',
+    author: 'Template Architect',
+    imageUrl: 'https://picsum.photos/800/400?random=14',
+    content: `
+      <p class="mb-4">The key to a successful Notion template is logic. It's not just pages; it's databases, relations, and rollups.</p>
+      <h3 class="text-xl font-bold text-emerald-300 mt-6 mb-2">Popular Niches</h3>
+      <ul class="list-disc ml-5 text-gray-300">
+        <li>Student Planners</li>
+        <li>Freelance CRMs</li>
+        <li>Content Calendars</li>
+        <li>Finance Trackers</li>
+      </ul>
+    `
+  },
+  {
+    id: 'seo-content-bundles',
+    title: 'SEO Content Bundles: The Hidden Gem',
+    excerpt: 'Website owners hate writing boilerplate content. Sell them "Content Bundles" to jumpstart their blogs.',
+    date: 'Oct 27, 2025',
+    author: 'SEO Wizard',
+    imageUrl: 'https://picsum.photos/800/400?random=15',
+    content: `
+      <p class="mb-4">An SEO Content Bundle includes 10-20 articles on a specific niche, optimized for keywords. For example, "20 Articles about Dog Training."</p>
+      <p class="mb-4">Use AI to generate the base content, human-review it, and sell the pack. It's a massive time-saver for affiliate marketers.</p>
+    `
+  },
+  {
+    id: 'ai-video-scripts',
+    title: 'Monetizing AI Video Scripts',
+    excerpt: 'YouTubers are constantly looking for video ideas. Sell script packs for specialized niches.',
+    date: 'Oct 29, 2025',
+    author: 'Video Strategist',
+    imageUrl: 'https://picsum.photos/800/400?random=16',
+    content: `
+      <p class="mb-4">Short-form content is king. Scripts for TikToks and Reels that are designed to go viral are in high demand.</p>
+      <p class="mb-4">Create a pack of "50 Viral Hooks for Finance Creators" and watch it fly off the digital shelf.</p>
+    `
+  },
+  {
+    id: 'stock-ai-art',
+    title: 'Selling Stock AI Art Collections',
+    excerpt: 'Stock photography is being disrupted. Curated AI art collections for websites and presentations are the new stock photo.',
+    date: 'Nov 01, 2025',
+    author: 'Visual Director',
+    imageUrl: 'https://picsum.photos/800/400?random=17',
+    content: `
+      <p class="mb-4">Don't sell single images. Sell packs. "100 Cyberpunk Backgrounds" or "50 Minimalist Office Illustrations."</p>
+      <p class="mb-4">Designers need consistency. Ensure your AI generation style is consistent across the entire pack.</p>
+    `
+  },
+  {
+    id: 'audio-loops-ai',
+    title: 'AI Generated Audio Loops for Game Devs',
+    excerpt: 'Indie game developers need affordable assets. AI music generators can create royalty-free loops instantly.',
+    date: 'Nov 03, 2025',
+    author: 'Audio Engineer',
+    imageUrl: 'https://picsum.photos/800/400?random=18',
+    content: `
+      <p class="mb-4">Background ambience, menu music, and sound effects. These are essential for game jams and indie projects.</p>
+      <p class="mb-4">Package them by genre: "Retro 8-bit," "Horror Ambience," or "Upbeat Platformer."</p>
+    `
+  },
+  {
+    id: 'future-of-digital-products',
+    title: 'The Future of Digital Products 2030',
+    excerpt: 'What comes after PDFs and Templates? A look into interactive, AI-powered mini-apps as products.',
+    date: 'Nov 05, 2025',
+    author: 'Futurist',
+    imageUrl: 'https://picsum.photos/800/400?random=19',
+    content: `
+      <p class="mb-4">Static files are just the beginning. The future is "active" products. Buying a prompt pack that adjusts itself to your writing style.</p>
+      <p class="mb-4">We are moving from "Consumption" to "Co-creation" with the products we buy.</p>
+    `
   }
 ];

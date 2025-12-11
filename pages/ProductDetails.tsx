@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Product } from '../types';
-import { ShoppingBag, Star, CheckCircle, ArrowLeft } from 'lucide-react';
+import { ShoppingBag, Star, CheckCircle, ArrowLeft, AlertTriangle } from 'lucide-react';
 
 interface ProductDetailsProps {
   products: Product[];
@@ -12,10 +12,24 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ products, onAddToCart }
   const { id } = useParams<{ id: string }>();
   const product = products.find(p => p.id === id);
 
-  if (!product) return <div className="p-10 text-white">Product not found.</div>;
+  if (!product) {
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center px-6 text-center">
+        <AlertTriangle size={64} className="text-yellow-500 mb-6" />
+        <h2 className="text-3xl font-bold text-white mb-4">Product Not Found</h2>
+        <p className="text-gray-400 mb-8 max-w-md">The product you are looking for might have been removed or the link is incorrect.</p>
+        <Link 
+          to="/store" 
+          className="bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 px-8 rounded-lg transition"
+        >
+          Return to Store
+        </Link>
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12 min-h-screen">
+    <div className="max-w-7xl mx-auto px-6 py-12 min-h-screen animate-fadeIn">
        <Link to="/store" className="flex items-center text-gray-400 hover:text-emerald-400 mb-8 transition">
         <ArrowLeft size={20} className="mr-2" /> Back to Store
       </Link>
@@ -67,7 +81,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ products, onAddToCart }
 
           <button 
             onClick={() => onAddToCart(product)}
-            className="w-full py-4 bg-white hover:bg-gray-200 text-black font-bold text-lg rounded-xl flex items-center justify-center gap-3 transition"
+            className="w-full py-4 bg-white hover:bg-gray-200 text-black font-bold text-lg rounded-xl flex items-center justify-center gap-3 transition transform active:scale-95"
           >
             <ShoppingBag /> Add to Cart
           </button>

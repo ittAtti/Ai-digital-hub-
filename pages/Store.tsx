@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Product } from '../types';
 import ProductCard from '../components/ProductCard';
-import { Search, Filter } from 'lucide-react';
+import { Search, Filter, RefreshCcw } from 'lucide-react';
 
 interface StoreProps {
   products: Product[];
@@ -20,6 +20,11 @@ const Store: React.FC<StoreProps> = ({ products, onAddToCart }) => {
     const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+
+  const resetFilters = () => {
+    setSearchTerm('');
+    setSelectedCategory('All');
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 min-h-screen">
@@ -57,11 +62,18 @@ const Store: React.FC<StoreProps> = ({ products, onAddToCart }) => {
       </div>
 
       {filteredProducts.length === 0 ? (
-        <div className="text-center py-20">
-          <p className="text-gray-500 text-xl">No products found matching your criteria.</p>
+        <div className="text-center py-20 bg-gray-800/50 rounded-xl border border-dashed border-gray-700">
+          <p className="text-gray-300 text-xl font-medium mb-4">No products found matching your criteria.</p>
+          <p className="text-gray-500 mb-6">Try adjusting your search terms or filters.</p>
+          <button 
+            onClick={resetFilters}
+            className="flex items-center gap-2 mx-auto bg-gray-700 hover:bg-gray-600 text-white px-5 py-2 rounded-lg transition"
+          >
+            <RefreshCcw size={16} /> Clear Filters
+          </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 animate-fadeIn">
           {filteredProducts.map(product => (
             <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} />
           ))}

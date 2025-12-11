@@ -1,0 +1,5 @@
+{
+  "name": "AI Digital Products Hub",
+  "description": "A futuristic marketplace for AI-generated digital products including eBooks, prompt packs, and marketing kits. Features an admin dashboard for auto-generating new products using Gemini.",
+  "requestFramePermissions": []
+}

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Digital Products Hub</title>
     
-    <!-- Tailwind Config must be defined BEFORE the CDN script loads -->
+    <!-- Polyfill for process/global to prevent libraries from crashing -->
     <script>
       window.process = { env: { NODE_ENV: 'production' } };
       window.global = window;
@@ -55,7 +55,7 @@
       }
     </style>
     
-    <!-- FIXED IMPORT MAP: All libraries forced to use React 18.2.0 -->
+    <!-- FIXED IMPORT MAP: Removed React 19 reference and pinned all deps to React 18.2.0 -->
     <script type="importmap">
 {
   "imports": {

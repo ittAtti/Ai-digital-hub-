@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Digital Products Hub</title>
     
-    <!-- Polyfill for process/global to prevent libraries from crashing -->
+    <!-- Polyfill for process/global -->
     <script>
       window.process = { env: { NODE_ENV: 'production' } };
       window.global = window;
@@ -20,7 +20,7 @@
               },
               colors: {
                 emerald: {
-                  450: '#10b981', // Custom neon-ish emerald
+                  450: '#10b981', 
                 },
                 lime: {
                   450: '#a3e635',
@@ -36,10 +36,9 @@
     
     <style>
       body {
-        background-color: #111827; /* gray-900 */
-        color: #f3f4f6; /* gray-100 */
+        background-color: #111827; 
+        color: #f3f4f6; 
       }
-      /* Custom scrollbar for dark theme */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -55,7 +54,6 @@
       }
     </style>
     
-    <!-- FIXED IMPORT MAP: Removed React 19 reference and pinned all deps to React 18.2.0 -->
     <script type="importmap">
 {
   "imports": {
@@ -74,16 +72,13 @@
   </head>
   <body>
     <div id="root"></div>
-    
-    <!-- CRITICAL: This loads your React App -->
     <script type="module" src="./index.tsx"></script>
-
-    <!-- Error Handler to show if React fails to mount -->
     <script>
       window.addEventListener('error', function(event) {
         const root = document.getElementById('root');
         if (root && root.innerHTML === '') {
-          console.error("Global Error caught:", event.error);
+          console.error("Critical Application Error:", event.error);
+          root.innerHTML = '<div style="color:white; padding:20px; font-family:sans-serif;"><h1>Application Failed to Load</h1><p>There was an error loading the application scripts.</p><pre style="color:red; background:#333; padding:10px; border-radius:5px; overflow:auto;">' + event.error + '</pre></div>';
         }
       });
     </script>

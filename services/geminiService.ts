@@ -74,12 +74,16 @@ export const generateProductConcept = async (
   agentType: AgentType,
   topic: string
 ): Promise<GeneratedProductDraft | null> => {
-  if (!apiKey || !ai) {
+  if (!process.env.API_KEY) {
     throw new Error("API Key is missing. Please add the API_KEY environment variable in your Netlify Site Settings.");
   }
 
-  const modelId = "gemini-2.5-flash"; 
+  // Use Gemini 3 Flash Preview as the default for text tasks
+  const modelId = "gemini-3-flash-preview"; 
   const specificInstruction = getAgentPrompt(agentType, topic);
+
+  // Re-initialize AI client to ensure the most recent key is used
+  const genAI = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
   const prompt = `
     ${specificInstruction}
@@ -94,7 +98,7 @@ export const generateProductConcept = async (
   `;
 
   try {
-    const response = await ai.models.generateContent({
+    const response = await genAI.models.generateContent({
       model: modelId,
       contents: prompt,
       config: {
